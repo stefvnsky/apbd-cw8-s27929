@@ -1,0 +1,50 @@
+@WebAPI_HostAddress = http://localhost:5000
+
+### 1. pobierz wszystkie wycieczki
+GET {{WebAPI_HostAddress}}/api/trips
+Accept: application/json
+
+###
+
+### 2. pobieranie wycieczki klienta o id = 1
+GET {{WebAPI_HostAddress}}/api/clients/1/trips
+Accept: application/json
+
+###
+
+### 3. dodaj nowego klienta
+POST {{WebAPI_HostAddress}}/api/clients
+Content-Type: application/json
+
+{
+  "firstName": "Anna",
+  "lastName": "Nowak",
+  "email": "annanowak@gmail.com",
+  "telephone": "123456789",
+  "pesel": "04463719918"
+}
+
+###
+
+### 4. zapisz klienta o id = 1 na wycieczke id = 2 z walidacja limitu miejsc
+PUT {{WebAPI_HostAddress}}/api/clients/1/trips?tripId=2&paymentDate=20240520
+
+###
+
+### 5. Usun rejestrację klienta id = 1 z wycieczki id = 2
+DELETE {{WebAPI_HostAddress}}/api/clients/1/trips/2
+
+###
+
+### zapisz klienta o id = 1 na wycieczke(automatycznie utworz jesli nie istnieje
+POST {{WebAPI_HostAddress}}/api/trips/1/clients
+Content-Type: application/json
+
+{
+  "firstName": "Jan",
+  "lastName": "Kowalski",
+  "email": "jankowalski@gmail.com",
+  "telephone": "123456789",
+  "pesel": "03362608817",
+  "paymentDate": 20240520
+}
